@@ -1,0 +1,154 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ff351fbe;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#upload-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+header {
+    background-color: #1b1a1a; 
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+#banner {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px; 
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#upload-section, #result-section {
+    margin-bottom: 20px;
+}
+
+#result-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.file-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.remove-button {
+    background-color: #030303; 
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+}
+
+.remove-button:hover {
+    background-color: #f51602;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.upload-button {
+    background-color: #030303;
+    color: #fff;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    width: 500px;
+    align-items: center;
+    text-align: center;
+}
+
+.download-button {
+    background-color: #030303;
+    color: #fff;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    width: 500px;
+    align-items: center;
+    text-align: center;
+}
+
+.download-button:hover {
+    background-color: #f51602;
+}
+
+.upload-button:hover {
+    background-color: #f51602;
+}
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); 
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

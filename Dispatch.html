@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Dispatch.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Dispatch | Background Remover</title>
+</head>
+<body>
+    <header>
+        <img src="Dispatch_banner.svg" alt="Dispatch Banner" id="banner">
+        <h1>Unleash the enigmatic power of Dispatch: Your eerie companion for effortlessly vanishing backgrounds. Dive into the shadows with its mysterious interface and supernatural features, transforming image editing into a hauntingly delightful experience. Embark on a journey where backgrounds fade into the unknown, and creativity takes a spine-chilling turn. Welcome to the ghostly simplicity of Dispatch, where backgrounds don't just disappear—they become spectral gateways to otherworldly possibilities.</h1>
+    </header>
+    
+    <main>
+        <!-- Button to open the modal -->
+        <div class="button">
+            <button onclick="openUploadModal()" class="upload-button">Upload Your Image</button>
+            <button class="upload-button"><a href="./AboutUs.html">About us</a></button>
+        </div>
+
+        <!-- The Modal -->
+        <div id="upload-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeUploadModal()">&times;</span>
+                <form id="upload-form">
+                    <div class=""> 
+                        <input id="fileInput" type="file">
+                    </div>
+                    <input class="upload-button" type="button"  onclick="submitHandler()"value="Remove Background">
+                    <button class="download-button" onclick="downloadFile()">Download</button>
+
+                    <section id="result-section" style="display:none;">
+                        <h2>Result</h2>
+                        <img id="result-image" alt="Removed Background">
+                    </section>
+
+                </form>
+            </div>
+        </div>
+
+        <section id="result-section" style="display:none;">
+            <h2>Result</h2>
+            <img id="result-image" alt="Removed Background">
+        </section>
+    </main>
+
+    <script>
+        function openUploadModal() {
+        var modal = document.getElementById('upload-modal');
+        modal.style.display = 'block';
+    }
+
+    // Function to close the upload modal
+    function closeUploadModal() {
+            var modal = document.getElementById('upload-modal');
+            modal.style.display = 'none';
+        }
+
+        let imageURL;
+
+        function submitHandler() {
+            const fileInput = document.getElementById('fileInput');
+            const image = fileInput.files[0];
+
+            const formData = new FormData();
+            formData.append('image_file', image);
+            formData.append('size', 'auto');
+
+            const apiKey = '87NrrQHuwApCTkNTcuFzs8q3';
+
+            fetch('https://api.remove.bg/v1.0/removebg', {
+                    method: 'POST',
+                    headers: {
+                        'X-Api-Key': apiKey
+                    },
+                    body: formData
+                })
+                .then(function(response) {
+                    return response.blob();
+                })
+                .then(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    imageURL = url;
+
+                    const resultImage = document.getElementById('result-image');
+                    const resultSection = document.getElementById('result-section');
+
+                    resultImage.src = url;
+                    resultSection.style.display = 'block';
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+        }
+
+        function downloadFile() {
+            var anchorElement = document.createElement('a');
+            anchorElement.href = imageURL;
+            anchorElement.download = 'removed_background.png';
+            document.body.appendChild(anchorElement);
+
+            anchorElement.click();
+
+            document.body.removeChild(anchorElement);
+        }
+    </script>
+</body>
+</html>
